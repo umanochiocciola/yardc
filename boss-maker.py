@@ -1,3 +1,5 @@
+# this code is not part of the game, but a tool to create boss rooms
+
 from params import *
 from cell import cell, afd
 
