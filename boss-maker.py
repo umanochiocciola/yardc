@@ -1,14 +1,13 @@
-# this code is not part of the game, but a tool to create boss rooms
-
 from params import *
 from cell import cell, afd
 
+g.mixer.pause()
 
 def GetTerrain():
     
     cells = []
     TYPE = 0
-    types = ['wall', 'exit', 'blocked-exit', 'goblin', 'rat', 'boar', 'sokoban', 'griefer']
+    types = ['wall', 'exit', 'wall?', 'blocked-exit', 'goblin', 'rat', 'boar', 'sokoban', 'griefer', 'tanky', 'spike', 'boss1']
     one = 1
     while one:
         for ev in g.event.get(): 

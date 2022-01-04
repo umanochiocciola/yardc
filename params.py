@@ -28,6 +28,7 @@ use_animation = {
     "upgrade": 40,
     'boar' : 20,
     'griefer': 50,
+    'boss1' : 50,
     #'blood-hurt': 60
 
 }
@@ -45,4 +46,8 @@ music = {
 }
 
 music["main"].play(-1)
+
+
+
+bossdata = {} # will be used by bosses to store values
 

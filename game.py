@@ -1,6 +1,7 @@
 #from lvl import GenLevel
 from params import *
 from cell import cell, afd
+import bosses
 from terrain import GetTerrain
 from menu import menu
 
@@ -17,7 +18,7 @@ def main():
     
     while 1: # game
         if cells:
-            carry = (cells[0].hp, cells[0].atk, cells[0].defence, cells[0].score)
+            carry = (cells[0].hp, cells[0].atk, cells[0].defence, cells[0].score+5)
         
         
         if LEVEL%10:
@@ -36,7 +37,7 @@ def main():
         cells[0].hp, cells[0].atk, cells[0].defence, cells[0].score = carry
             
         if not alive:
-            return LEVEL
+            return cells[0].score
         
         mvx = mvy = 0
         
@@ -157,15 +158,15 @@ def CheckUpgrades(pl, cells): # and apply them
             cells.remove(i)
             
             #apply upgrade
-            dice = randint(0, 4)
+            dice = randint(0, 3)
             if dice == 0:
-                pl.hp += randint(1,5)
+                pl.hp += 1
             if dice == 1:
-                pl.atk += randint(1,5)
+                pl.atk += 1
             if dice == 2:
-                pl.score += randint(1,5)
+                pl.score += 1
             if dice == 3:
-                pl.defence += randint(1,5)
+                pl.defence += 1
 
             
             return
@@ -201,8 +202,8 @@ def EntityMovement(cells, tic):
         
         if i.type == 'blocked-exit':
             open_me = 1
-            for i in cells:
-                if i.isEntity and i.type != 'player':
+            for j in cells:
+                if j.isEntity and j.type != 'player' and j.type != 'boulder':
                    open_me = 0
                    break
             
@@ -232,7 +233,18 @@ def EntityMovement(cells, tic):
             i.dir = 1-2*(cells[0].x < i.x)
             if randint(1, 100) == 1:
                 randmov(cells, i)
-            
+        
+        if i.type == 'spike':
+            i.dir = 1-2*(cells[0].x < i.x)
+            if randint(1, 20) == 1:
+                randmov(cells, i)
+        
+        
+        
+        if i.type == 'boss1':
+            bosses.boss_1(cells, i)
+        
+        
             
 
 
@@ -271,9 +283,8 @@ def CheckDamage(pl, cells):
             i.y -= pl.ydir
             if i.hp <= 0:
                 cells.remove(i)
-            
-            else:
-                return i.atk
+                pl.score += i.OnKill
+            return i.atk
 
 def GetLevel(*args):
     

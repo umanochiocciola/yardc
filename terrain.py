@@ -5,6 +5,21 @@ def DEBUG(stuff):
     0
 
 
+spawnrate = {
+    # enemy    ( max times to be spawned     min level     max level{-1=no limit} )
+    "goblin" : (3, 0, -1),
+    "rat"    : (6, 0, -1),
+    "boar"   : (5, 10, -1),
+    "griefer": (3, 15, -1),
+    "tanky"  : (3, 20, -1),
+    "spike"  : (4, 20, -1)
+    
+    
+}
+
+
+
+
 def GetTerrain(ox, oy, maxX, maxY, lvl):
     
     #with open('cringe', 'w') as f: f.write('----------\n')
@@ -49,42 +64,33 @@ def GetTerrain(ox, oy, maxX, maxY, lvl):
         except: 0 #tile already carved
     
     
-    goblins = []
-    for i in range(r.randint(0, 3)):
-        goblins.append(r.choice(all_paths))
-    
-    rats = []
-    for i in range(r.randint(0, 6)):
-        rats.append(r.choice(all_paths))
     
     upgrades = []
     for i in range(r.randint(0, 4)):
         upgrades.append(r.choice(all_paths))
     
-    boars = []
-    if lvl > 10:
-        for i in range(r.randint(0, 5)):
-            boars.append(r.choice(all_paths))
-    
-    
-    griefers = []
-    if lvl > 15:
-        for i in range(r.randint(0, 3)):
-            griefers.append(r.choice(all_paths))
-    
-    
-    tanks = []
-    if lvl > 20:
-        for i in range(r.randint(0, 3)):
-            tanks.append(r.choice(all_paths))
-    
     
     
     end = r.choice(all_paths)
     
+    OUT = {"wall": walls, "exit": [end], "upgrade": upgrades}
+    
+    for i in spawnrate:
+        chance, m, M = spawnrate[i]
+        
+        #print('spawning', i+'s')
+        
+        if lvl >= m and (lvl < M or M==-1):
+            cat = []
+            for j in range(r.randint(0, chance)):
+                cat.append(r.choice(all_paths))
+            
+            #print(cat)
+            
+            OUT[i] = cat
     
     
-    return {"wall": walls, "exit": [end], "goblin": goblins, "rat": rats, "upgrade": upgrades, "boar": boars, "griefer": griefers, "tanky": tanks}
+    return OUT
 
     
 def carve_room(out, x, y, w, h):

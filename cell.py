@@ -7,11 +7,15 @@ afd = {}
 entities = {
     #  name    atk hp gold
     "goblin" : (1, 5, 1),
-    "rat"    : (1, 1, 0),
-    "boar"   : (5, 10, 3),
+    "rat"    : (1, 2, 0),
+    "boar"   : (5, 5, 3),
     "griefer": (1, 1, 3),
     "boulder": (6, 99, 0),
     "tanky"  : (5, 30, 5),
+    "spike"  : (10, 5, 5),
+    
+    
+    "boss1"  : (0, 1, 10)
     
 }
 
@@ -42,7 +46,6 @@ class cell:
         if celltype in entities:
             s.isEntity = 1
             s.atk, s.hp, s.OnKill = entities[celltype]
-        
         
         
         if celltype in afd:
