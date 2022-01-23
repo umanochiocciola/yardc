@@ -1,5 +1,29 @@
 {
 
-    "USELEVELS": 0
+    "USELEVELS": 0,
+
+    "help": {
+
+        "wall"        : "a wall, you can't pass through it",
+        "player"      : "that's you!",
+        "exit"        : "get here to proceed",
+        "blocked-exit": "you need to kill everyone here to unlock it",
+        "rat"         : "a filthy rat. 1/2",
+        "goblin"      : "basically a buffed rat, 1/5",
+        "boar"        : "a nasty boar. 5/5",
+        "griefer": "a 1/1 that throws boulders!",
+        "boulder": "not really anything else to say... 6/99",
+        "tanky"  : "a 5/30, kill it if you must",
+        "spike"  : "a little ugly 15/5",
+
+        "boss1"  : "0/1 that summons boulders",
+        "boss2"  : "0/100 that summons Xboars",
+        "boss3"  : "this boss battle is not like mettaton at all",
+
+        "Xboar"  : "a ghost that explodes...",
+
+        "gun"    : "press SPACE to shoot!"
+
+    }
 
 }

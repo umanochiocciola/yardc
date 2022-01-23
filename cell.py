@@ -10,12 +10,14 @@ entities = {
     "rat"    : (1, 2, 0),
     "boar"   : (5, 5, 3),
     "griefer": (1, 1, 3),
-    "boulder": (6, 99, 0),
+    "boulder": (7, 99, 0),
+    "boulder2": (12, 99, 0),
     "tanky"  : (5, 30, 5),
-    "spike"  : (10, 5, 5),
+    "spike"  : (7, 5, 5),
     
-    
-    "boss1"  : (0, 1, 10)
+    "boss1"  : (0, 1, 10),
+    "boss2"  : (0, 100, 10),
+    "boss3"  : (0, 100, 20),
     
 }
 
@@ -62,6 +64,9 @@ class cell:
         s.atic   = 0
         s.fr = fr
         s.oneciclefinished = 0
+        
+        
+        s.owntic = 0 # used by some to count stuff
         
         #print(celltype, s.fn)
     

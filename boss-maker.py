@@ -7,7 +7,7 @@ def GetTerrain():
     
     cells = []
     TYPE = 0
-    types = ['wall', 'exit', 'wall?', 'blocked-exit', 'goblin', 'rat', 'boar', 'sokoban', 'griefer', 'tanky', 'spike', 'boss1']
+    types = ['teleport-enter', 'teleport-exit', 'boss3', 'wall', 'exit', 'fake-wall', 'blocked-exit', 'goblin', 'rat', 'boar', 'sokoban', 'griefer', 'tanky', 'spike', 'boss1', 'boss2']
     one = 1
     while one:
         for ev in g.event.get(): 
@@ -73,6 +73,8 @@ def update(cells, selected):
     
     
     screen.blit(font.render(f'selected: {selected}', 0, (0, 255, 0)), (10,10))
+    
+    window.blit(screen, (0,0))
     
     g.display.flip()
     clock.tick(60)
